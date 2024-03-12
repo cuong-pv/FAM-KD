@@ -1,0 +1,58 @@
+EXPERIMENT:
+  NAME: ""
+  TAG: "FAM_KD,resnet34,res18"
+  PROJECT: "imagenet_baselines"
+
+DATASET:
+  TYPE: "imagenet"
+  NUM_WORKERS: 16
+  TEST:
+    BATCH_SIZE: 256
+
+DISTILLER:
+  TYPE: "FAM_KD"
+  TEACHER: "ResNet34"
+  STUDENT: "ResNet18"
+FAM_KD:
+  FAMKD_WEIGHT: 1.0
+  SHAPES : [1,7,14,28,56]
+  OUT_SHAPES : [1,7,14,28,56]
+  IN_SHAPES : [1, 1,7,14,28]
+  IN_CHANNELS_X: [64,128,256,512,512]
+  IN_CHANNELS : [128, 256, 512,512, 1] # channel from residual
+  MID_CHANNELS: [64,128,256,512,512]
+  OUT_CHANNELS : [64,128,256,512,512]
+
+  MAX_MID_CHANNEL : 512
+  GUIDE_LAYERS : [1, 2, 3, 4]
+  STU_PREACT : False
+
+  WARMUP_EPOCHS : 1
+
+SOLVER:
+  BATCH_SIZE: 128
+  EPOCHS: 100
+  LR: 0.1
+  LR_DECAY_STAGES: [30, 60, 90]
+  LR_DECAY_RATE: 0.1
+  WEIGHT_DECAY: 0.0001
+  MOMENTUM: 0.9
+  TYPE: "SGD"
+
+LOG:
+  TENSORBOARD_FREQ: 50
+  SAVE_CHECKPOINT_FREQ: 20
+  WANDB : False
+
+
+# torch.Size([1, 64, 112, 112])
+# torch.Size([1, 64, 56, 56])
+# torch.Size([1, 128, 28, 28])
+# torch.Size([1, 256, 14, 14])
+# torch.Size([1, 512, 7, 7])
+
+
+
+
+
+

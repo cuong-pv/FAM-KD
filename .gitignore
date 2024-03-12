@@ -1,0 +1,9 @@
+logs/*
+# Environments
+.env
+.envrc
+.venv
+venv/
+ENV/
+env/
+bin/

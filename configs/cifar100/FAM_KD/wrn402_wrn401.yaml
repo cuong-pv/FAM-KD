@@ -1,0 +1,40 @@
+EXPERIMENT:
+  NAME: ""
+  TAG: "fam_kd,wrn402,wrn401"
+  PROJECT: "cifar100_FAM_KD"
+DISTILLER:
+  TYPE: "FAM_KD"
+  TEACHER: "wrn_40_2"
+  STUDENT: "wrn_40_1"
+FAM_KD:
+  FAMKD_WEIGHT: 5.0
+  CE_WEIGHT: 1.0
+  SHAPES : [1,8,16,32]
+  OUT_SHAPES : [1,8,16,32]
+  IN_SHAPES : [1,1,8,16]
+  
+  IN_CHANNELS_X: [16, 32, 64,64]
+  IN_CHANNELS : [32, 64, 64,1] # channel from residual
+  MID_CHANNELS: [16, 32, 64,64]
+  OUT_CHANNELS : [32,64,128,128]
+
+  MAX_MID_CHANNEL : 512
+  GUIDE_LAYERS : [1, 2, 3, 4]
+  STU_PREACT : False
+
+SOLVER:
+  BATCH_SIZE: 64
+  EPOCHS: 240
+  LR: 0.05
+  LR_DECAY_STAGES: [150, 180, 210]
+  LR_DECAY_RATE: 0.1
+  WEIGHT_DECAY: 0.0005
+  MOMENTUM: 0.9
+  TYPE: "SGD"
+  TRAINER: "base"
+LOG:
+  WANDB: False
+
+
+
+
