@@ -26,13 +26,13 @@ For ImageNet dataset, download data to train and val folder
 
 ### Training on CIFAR-100
 
-<!-- - Download the `cifar_teachers.tar` at <https://github.com/megvii-research/mdistiller/releases/tag/checkpoints> and untar it to `./download_ckpts` via `tar xvf cifar_teachers.tar`. -->
+- Download the `cifar_teachers.tar` at <https://github.com/megvii-research/mdistiller/releases/tag/checkpoints> and untar it to `./download_ckpts` via `tar xvf cifar_teachers.tar`.
 
   ```bash
-  python3 tools/train.py --cfg configs/cifar100/FAM_KD/res56_res20.yaml
+  python3 train.py --cfg configs/cifar100/FAM_KD/res56_res20.yaml
 
   # you can also change settings at command line
-  python3 tools/train.py --cfg configs/cifar100/FAM_KD/res56_res20.yaml SOLVER.BATCH_SIZE 128 SOLVER.LR 0.1
+  python3 train.py --cfg configs/cifar100/FAM_KD/res56_res20.yaml SOLVER.BATCH_SIZE 128 SOLVER.LR 0.1
   ```
 
 ### Training on ImageNet
@@ -40,18 +40,12 @@ For ImageNet dataset, download data to train and val folder
 - Download the dataset at <https://image-net.org/> and put them to `./data/imagenet`
   ```bash
   # train ResNet18 with FAM-KD
-  python3 tools/train.py --cfg configs/imagenet/r34_r18/fam_kd.yaml
+  python3 train.py --cfg configs/imagenet/r34_r18/fam_kd.yaml
   ```
 
-<!-- ## Evaluation
-    
-      ```bash
-      # evaluate the trained model
-      python3 tools/eval.py --cfg configs/cifar100/FAM_KD/res56_res20.yaml
-      ``` -->
 
 ### Note
-- Current pytorch version does not support multi-gpu for training with `torch.fft` module. Therefor we should specific GPU number when training (e.g, CUDA_VISIBLE_DEVICES=0). We will update the code to support multi-gpu training soon.
+- Current pytorch version does not support multi-gpu for training with `torch.fft` module. Therefore, you should specific GPU number when training (e.g, CUDA_VISIBLE_DEVICES=0). We will update the code to support multi-gpu training soon.
 ## License <a name="license"></a>
 
 All assets and code are under the [Apache 2.0 license](./LICENSE) unless specified otherwise.
